@@ -1,30 +1,30 @@
-/* for each occurrence of string "hell" print "Hello COP4020" */
+/* for each occurrence of string "hell" print "hello cop4020" */
 %{
  #include <stdio.h>
- #define ID 256
+ #define id 256
  int lineno;
 %}
 %%
 [ \t]+ {;}
 \n       { lineno++; }
-hell     { fprintf(yyout, "Hello COP4020 : lineno %d \n", lineno);
-           return ID;
+hell     { fprintf(yyout, "hello cop4020 : lineno %d \n", lineno);
+           return id;
          }
-<<EOF>>  { return EOF; }
+<<eof>>  { return eof; }
 .        { ; }
 %%
 int main(void) {
   lineno = 0;
   int type;
-  extern FILE *yyin, *yyout;
+  extern file *yyin, *yyout;
   yyin = fopen("mobydick.txt", "r");
   yyout = fopen("mobydick-out.txt", "w");
 
-  while ((type = yylex()) != EOF) {
+  while ((type = yylex()) != eof) {
      switch (type) {
-       case ID:
+       case id:
            // do something
-           printf("I found the pattern\n");
+           printf("i found the pattern\n");
            break;
        default:
            break;
