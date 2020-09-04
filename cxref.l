@@ -10,6 +10,7 @@ bool stringcontext;
 %}
 
 %%
+\\\n                        { /* escaped newline */ ; }
 \n                          { lineno++; linecomment = false;}
 \/\/                        {
                               if (!blockcomment && !stringcontext)
