@@ -5,13 +5,14 @@
  int lineno;
 %}
 %%
-[ \t]+ {;}
-\n       { lineno++; }
-hell     { fprintf(yyout, "hello cop4620 : lineno %d \n", lineno);
+\n       { putc('\n', yyout);
+           lineno++; }
+hell     {
+           fprintf(yyout, "hello cop4620 : lineno %d \n", lineno);
            return id;
          }
 <<EOF>>  { return EOF; }
-.        { ; }
+.        { putc(*yytext,yyout); }
 %%
 int main(void) {
   lineno = 0;
@@ -24,7 +25,9 @@ int main(void) {
      switch (type) {
        case id:
            // do something
-           printf("i found the pattern\n");
+           printf("\033[0;33m");
+           printf("i found the pattern in %d\n", lineno);
+           printf("\033[0m");
            break;
        default:
            break;
