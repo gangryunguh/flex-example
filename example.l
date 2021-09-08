@@ -1,14 +1,19 @@
-/* for each occurrence of string "hell" print "hello cop4620" */
+/* repace each occurrence of string "hell" print "heaven" */
 %{
  #include <stdio.h>
  #define id 256
  int lineno;
 %}
 %%
-\n       { putc('\n', yyout);
-           lineno++; }
+\n       {
+           putc('\n', yyout);
+           lineno++;
+         }
+shell    {
+           fprintf(yyout,"%s",yytext);
+         }
 hell     {
-           fprintf(yyout, "hello cop4620 : lineno %d \n", lineno);
+           fprintf(yyout, "heaven");
            return id;
          }
 <<EOF>>  { return EOF; }
