@@ -7,12 +7,12 @@ set(CMAKE_BUILD_TYPE Debug)
 
 find_package(FLEX)
 
-FLEX_TARGET(CONTEXT example.l ${CMAKE_CURRENT_BINARY_DIR}/lex.yy.c)
+FLEX_TARGET(REPLACE replace.l ${CMAKE_CURRENT_BINARY_DIR}/lex.yy.c)
 FLEX_TARGET(CXREF cxref.l ${CMAKE_CURRENT_BINARY_DIR}/cxref.yy.c)
 
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
-add_executable(context
-        ${FLEX_CONTEXT_OUTPUTS}
+add_executable(replace
+        ${FLEX_REPLACE_OUTPUTS}
 )
 add_executable(cxref
         ${FLEX_CXREF_OUTPUTS}
