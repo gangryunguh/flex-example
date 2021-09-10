@@ -9,6 +9,7 @@ find_package(FLEX)
 
 FLEX_TARGET(REPLACE replace.l ${CMAKE_CURRENT_BINARY_DIR}/lex.yy.c)
 FLEX_TARGET(CXREF cxref.l ${CMAKE_CURRENT_BINARY_DIR}/cxref.yy.c)
+FLEX_TARGET(COMMENT linecomment.l ${CMAKE_CURRENT_BINARY_DIR}/comment.yy.c)
 
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 add_executable(replace
@@ -16,4 +17,7 @@ add_executable(replace
 )
 add_executable(cxref
         ${FLEX_CXREF_OUTPUTS}
-)
+        )
+add_executable(linecomment
+        ${FLEX_COMMENT_OUTPUTS}
+        )
